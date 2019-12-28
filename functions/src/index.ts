@@ -48,6 +48,21 @@ admin.initializeApp({
     const juegos=docsSnap.docs.map(doc=>doc.data());
     res.json(juegos);
  });
+ app.post('/goty',async(req,res)=>{
+     const name=req.body.name;
+     const id=name.replace(" ","-");
+      const data={
+        
+            'id':id,
+            'name':name,
+            'url':req.body.url,
+            'votos':0
+     }; 
+     db.collection('goty').doc(id).set(data)
+    
+     res.send(data);
+    
+ });
 
 
  app.post('/goty/:id',async(req,res)=>{
@@ -78,3 +93,4 @@ admin.initializeApp({
 
 
  exports.api=functions.https.onRequest(app);
+ 
