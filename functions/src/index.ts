@@ -58,7 +58,7 @@ admin.initializeApp({
             'url':req.body.url,
             'votos':0
      }; 
-     db.collection('goty').doc(id).set(data)
+     await db.collection('goty').doc(id).set(data);
     
      res.send(data);
     
